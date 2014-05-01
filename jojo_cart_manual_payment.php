@@ -16,13 +16,17 @@
 
 class JOJO_Plugin_jojo_cart_manual_payment extends JOJO_Plugin
 {
-    function getPaymentOptions()
+    static function getPaymentOptions()
     {
         global $smarty;
         $options = array();
+        $mplabel = Jojo::getOption('cart_manual_payment_label', 'Offline payment');
+        $mpdesc = Jojo::getOption('cart_manual_payment_description', 'The order will be dispatched once payment has been made. To confirm the order and receive payment instructions, press continue.');
+        $smarty->assign('mplabel', $mplabel);
+        $smarty->assign('mpdesc', $mpdesc);
         $options[] = array(
                 'id' => 'manual_payment',
-                'label' => "Offline payment - Pay by cheque or bank deposit",
+                'label' => $mplabel,
                 'html' => $smarty->fetch('jojo_cart_manual_payment_checkout.tpl')
                 );
         $options = Jojo::applyFilter('jojo_cart_manual_payment:get_payment_options', $options);
@@ -32,13 +36,13 @@ class JOJO_Plugin_jojo_cart_manual_payment extends JOJO_Plugin
     /*
     * Determines whether this payment plugin is active for the current payment.
     */
-    function isActive()
+    static function isActive()
     {
         /* Look for a post variable specifying the test processor */
         return (Jojo::getFormData('handler', false) == 'manual_payment') ? true : false;
     }
 
-    function process()
+    static function process()
     {
         $receipt = array();
         $errors  = array();

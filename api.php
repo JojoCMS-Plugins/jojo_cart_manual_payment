@@ -33,3 +33,26 @@ $_options[] = array(
   'options'     => '',
   'plugin'      => 'jojo_cart_manual_payment'
 );
+
+$_options[] = array(
+  'id'          => 'cart_manual_payment_label',
+  'category'    => 'Cart',
+  'label'       => 'Manual Payment name',
+  'description' => 'Name to display on the Payment Options list',
+  'type'        => 'text',
+  'default'     => 'Offline payment',
+  'options'     => '',
+  'plugin'      => 'jojo_cart_manual_payment'
+);
+
+$_options[] = array(
+  'id'          => 'cart_manual_payment_description',
+  'category'    => 'Cart',
+  'label'       => 'Manual Payment Description',
+  'description' => 'Short description to display on the Payment Options list',
+  'type'        => 'text',
+  'default'     => 'The order will be dispatched once payment has been made. To confirm the order and receive payment instructions, press continue.',
+  'options'     => '',
+  'plugin'      => 'jojo_cart_manual_payment'
+);
+
